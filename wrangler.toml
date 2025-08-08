@@ -1,4 +1,4 @@
-name = "smm-api"
+name = 'vinet-smm'
 main = "src/index.js"
 compatibility_date = "2025-08-08"
 compatibility_flags = ["nodejs_compat"]
