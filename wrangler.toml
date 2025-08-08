@@ -14,18 +14,21 @@ X_BEARER = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "smm-db"
-database_id = "d93fa292-cb4f-49b3-88ed-e413f3b2982b"
+# Replace with your actual D1 ID after creation
+database_id = "REPLACE_WITH_D1_DB_ID"
 
 [[kv_namespaces]]
 binding = "CACHE"
-id = "f657d570a04545d4b18f1a8818d4166f"
+id = "REPLACE_WITH_KV_ID"
 
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "smm-exports"
 
-[queues.producers]
-# optional later for async crawl jobs
+# Optional later for async crawl jobs
+# [[queues.producers]]
+# binding = "crawlQueue"
+# queue = "crawl-jobs"
 
 [observability]
 enabled = true
