@@ -24,7 +24,7 @@ id = "f657d570a04545d4b18f1a8818d4166f"
 binding = "R2"
 bucket_name = "smm-exports"
 
-[queues.producers]
+#[queues.producers]
 # optional later for async crawl jobs
 
 [observability]
