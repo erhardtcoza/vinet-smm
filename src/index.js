@@ -225,6 +225,35 @@ export default {
         });
         return ok({ r2_key: key });
       }
+// --- Plans list (latest first) ---
+if (pathname === "/api/plans" && request.method === "GET") {
+  const company_id = searchParams.get("company_id");
+  if (!company_id) return bad("company_id required");
+  const rows = await env.DB.prepare(
+    "SELECT id, week_start, platform, status FROM content_plan WHERE company_id=? ORDER BY id DESC LIMIT 20"
+  ).bind(company_id).all();
+  return ok({ plans: rows.results || [] });
+}
+
+// --- Posts for a plan ---
+if (pathname === "/api/posts" && request.method === "GET") {
+  const plan_id = searchParams.get("plan_id");
+  if (!plan_id) return bad("plan_id required");
+  const rows = await env.DB.prepare(
+    "SELECT id, platform, scheduled_at, caption, hashtags, image_prompt, status FROM post WHERE plan_id=? ORDER BY scheduled_at"
+  ).bind(plan_id).all();
+  return ok({ posts: rows.results || [] });
+}
+
+// --- SEO: list audited pages for a company ---
+if (pathname === "/api/seo/pages" && request.method === "GET") {
+  const company_id = searchParams.get("company_id");
+  if (!company_id) return bad("company_id required");
+  const rows = await env.DB.prepare(
+    "SELECT id, url, title, h1, meta_desc, score, last_checked, issues_json FROM seo_page WHERE company_id=? ORDER BY last_checked DESC NULLS LAST, id DESC LIMIT 100"
+  ).bind(company_id).all();
+  return ok({ pages: rows.results || [] });
+}
 
       return cors(new Response("Not found", { status: 404 }));
     } catch (e) {
