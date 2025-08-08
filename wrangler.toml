@@ -4,7 +4,6 @@ compatibility_date = "2025-08-08"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-# Optional: used in /api/publish later
 META_APP_ID = ""
 META_APP_SECRET = ""
 LINKEDIN_CLIENT_ID = ""
@@ -14,7 +13,7 @@ X_BEARER = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "smm-db"
-database_id = "d93fa292-cb4f-49b3-88ed-e413f3b2982b"
+database_id = "d93fa292-cb4f-49b3-88ed-e413f3b2982b"   # <- use your actual ID
 
 [[kv_namespaces]]
 binding = "CACHE"
@@ -24,8 +23,19 @@ id = "f657d570a04545d4b18f1a8818d4166f"
 binding = "R2"
 bucket_name = "smm-exports"
 
-#[queues.producers]
-# optional later for async crawl jobs
-
 [observability]
 enabled = true
+
+# Build the UI in /pages and copy to /public before deploy
+[build]
+command = """
+npm --prefix ./pages ci && \
+npm --prefix ./pages run build && \
+rm -rf ./public && mkdir -p ./public && \
+cp -R ./pages/dist/* ./public/
+"""
+
+# Serve static assets from ./public
+[assets]
+directory = "./public"
+html_handling = "auto-trailing-slash"
