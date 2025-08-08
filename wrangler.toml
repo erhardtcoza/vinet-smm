@@ -1,0 +1,32 @@
+name = "smm-api"
+main = "src/index.js"
+compatibility_date = "2025-08-08"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Optional: used in /api/publish later
+META_APP_ID = ""
+META_APP_SECRET = ""
+LINKEDIN_CLIENT_ID = ""
+LINKEDIN_CLIENT_SECRET = ""
+X_BEARER = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "smm-db"
+# Replace with your actual D1 ID after creation
+database_id = "REPLACE_WITH_D1_DB_ID"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "REPLACE_WITH_KV_ID"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "smm-exports"
+
+[queues.producers]
+# optional later for async crawl jobs
+
+[observability]
+enabled = true
