@@ -18,7 +18,7 @@ database_id = "d93fa292-cb4f-49b3-88ed-e413f3b2982b"
 
 [[kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_WITH_KV_ID"
+id = "f657d570a04545d4b18f1a8818d4166f"
 
 [[r2_buckets]]
 binding = "R2"
