@@ -14,8 +14,7 @@ X_BEARER = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "smm-db"
-# Replace with your actual D1 ID after creation
-database_id = "REPLACE_WITH_D1_DB_ID"
+database_id = "d93fa292-cb4f-49b3-88ed-e413f3b2982b"
 
 [[kv_namespaces]]
 binding = "CACHE"
